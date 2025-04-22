@@ -1,0 +1,29 @@
+.folder-container {
+  margin: 40px;
+
+  .folder-wrapper {
+    margin-bottom: 48px;
+  }
+  .title-wrapper {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+}
+
+.recent-wrapper {
+  .title {
+    margin-bottom: 24px;
+  }
+}
+.title {
+  font-size: 24px;
+}
+
+.plus-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

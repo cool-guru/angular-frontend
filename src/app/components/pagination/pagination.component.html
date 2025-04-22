@@ -1,0 +1,9 @@
+<div class="pagination-wrapper">
+  <div class="pagination">
+    <button class="pagination-btn" (click)="goPrevPage()" [disabled]="page === 1">Prev</button>
+    <span>Page {{ page }} of {{ totalPages }}</span>
+    <button class="pagination-btn" (click)="goNextPage()" [disabled]="page === totalPages">
+      Next
+    </button>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="folder-card card">
+  <div class="card-header">
+    <span class="icon">
+      <svg-icon src="{{ `assets/image/icons/folder.svg` }}"></svg-icon>
+    </span>
+    <app-dropdown [items]="dropdownItems" icon="dots" (onClick)="onActions($event)"> </app-dropdown>
+  </div>
+
+  <div class="card-body" (click)="goToDetail(data._id)">
+    <p class="folder-name">{{ data.name }}</p>
+    <p class="folder-subtext">Shared folder • {{ getFolderSize(data.products || []) }}</p>
+  </div>
+
+  <app-modal
+    title="Edit Folder Name"
+    [isOpen]="showModal"
+    (close)="closeModal()"
+    (confirm)="onConfirm()"
+  >
+    <form [formGroup]="form" (ngSubmit)="onConfirm()">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+    </form>
+  </app-modal>
+</div>

@@ -1,0 +1,52 @@
+<div class="product-card card">
+  <div class="product-card-container">
+    <div class="card-image">
+      <video
+        #videoRef
+        class="video"
+        src="{{ parsePath(data.path) }}"
+        [controls]="false"
+        playsInline
+        preload="auto"
+        (mouseover)="onHover(videoRef)"
+        (mouseleave)="onLeave(videoRef)"
+      ></video>
+
+      <div class="product-type-wrapper">
+        <span class="product-type">{{ formatType(data.type) }}</span>
+        <button class="fav-btn" (click)="onFavourite(data._id)">
+          <svg-icon
+            src="{{ data.favourite ? `assets/image/icons/favourite.svg` : `assets/image/icons/unfavourite.svg` }}"
+          ></svg-icon>
+        </button>
+      </div>
+      <app-dropdown
+        [items]="dropdownItems"
+        icon="dots"
+        class="product-menu"
+        (onClick)="onActions($event)"
+      >
+      </app-dropdown>
+    </div>
+    <div class="card-content">
+      <p class="product-name">{{ data.name }}</p>
+      <p class="product-author">
+        {{ data.author }} • {{ formatSize(data.size) }}
+      </p>
+    </div>
+  </div>
+
+  <app-modal
+    title="Edit Product Name"
+    [isOpen]="showModal"
+    (close)="closeModal()"
+    (confirm)="onConfirm()"
+  >
+    <form [formGroup]="form" (ngSubmit)="onConfirm()">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+    </form>
+  </app-modal>
+</div>

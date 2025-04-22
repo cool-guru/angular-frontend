@@ -1,0 +1,33 @@
+.pagination-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 24px 0px;
+
+  .pagination {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    align-items: center;
+
+    .pagination-btn {
+      max-height: 32px;
+      height: 100%;
+      background-color: #1d1d23;
+      color: #ffffff;
+      padding: 8px;
+      border: 1px solid #9da2b41f;
+      border-radius: 5px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      opacity: 0.6;
+
+      &:hover {
+        background-color: #2e2e35;
+        opacity: 1;
+      }
+    }
+  }
+}

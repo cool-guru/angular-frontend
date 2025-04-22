@@ -1,0 +1,41 @@
+<div class="folder-container">
+  <div class="folder-wrapper">
+    <div class="title-wrapper">
+      <h2 class="title">Folders</h2>
+      <button class="plus-btn" (click)="openModal()">
+        <svg-icon
+          src="{{ `assets/image/icons/plus.svg` }}"
+          [svgStyle]="{ 'width.px': 20, 'height.px': 20, display: 'block' }"
+        ></svg-icon>
+      </button>
+    </div>
+    <div class="grid grid-colums-auto" *ngIf="folders && folders?.length !== 0">
+      <app-folder-card *ngFor="let folder of folders" [data]="folder" (rename)="onRename($event)" (delete)="onDelete($event)"  />
+    </div>
+    <app-empty *ngIf="!folders || folders.length === 0" />
+    <app-pagination [page]="page" [totalPages]="totalPages" (goNext)="goNext()" (goPrev)="goPrev()" />
+
+  </div>
+
+  <div *ngIf="products && products.length !== 0" class="recent-wrapper">
+    <h2 class="title">Recently uploaded files</h2>
+
+    <div class="grid grid-colums-auto">
+      <app-product-card *ngFor="let product of products" (rename)="onProductRename($event)" (delete)="onProductDelete($event)" [data]="product" />
+    </div>
+  </div>
+
+  <app-modal
+    title="Create Folder"
+    [isOpen]="showModal"
+    (close)="closeModal()"
+    (confirm)="onConfirm()"
+  >
+    <form [formGroup]="form" (ngSubmit)="onConfirm()">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name" />
+      </div>
+    </form>
+  </app-modal>
+</div>

@@ -1,0 +1,96 @@
+<div class="product-container">
+  <div class="product-wrapper">
+    <div class="title-wrapper">
+      <h2 class="title">Products</h2>
+      <button class="plus-btn" (click)="openModal()">
+        <svg-icon
+          src="{{ `assets/image/icons/plus.svg` }}"
+          [svgStyle]="{ 'width.px': 20, 'height.px': 20, display: 'block' }"
+        ></svg-icon>
+      </button>
+    </div>
+    <div
+      class="grid grid-colums-auto"
+      *ngIf="products && products?.length !== 0"
+    >
+      <app-product-card
+        *ngFor="let product of products"
+        [data]="product"
+        (rename)="onRename($event)"
+        (delete)="onDelete($event)"
+      />
+    </div>
+    <app-empty *ngIf="!products || products.length === 0" />
+    <app-pagination
+      [page]="page"
+      [totalPages]="totalPages"
+      (goNext)="goNext()"
+      (goPrev)="goPrev()"
+    />
+  </div>
+
+  <app-modal
+    title="Create Product"
+    [isOpen]="showModal"
+    (close)="closeModal()"
+    (confirm)="onConfirm()"
+  >
+    <form [formGroup]="form" (ngSubmit)="onConfirm()">
+      <div class="input-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" formControlName="name" required />
+        <span
+          class="error-message"
+          *ngIf="submitted && form.get('name')?.invalid"
+        >
+          Name is required
+        </span>
+      </div>
+      <div class="input-group">
+        <label for="name">Author:</label>
+        <input id="name" type="text" formControlName="author" required />
+        <span
+          class="error-message"
+          *ngIf="submitted && form.get('name')?.invalid"
+        >
+          Author is required
+        </span>
+      </div>
+      <div class="input-group">
+        <label for="video">Video:</label>
+        <div class="upload-container">
+          <div class="upload-box">
+            <p *ngIf="!selectedFile" class="upload-label">Select File here</p>
+            <p *ngIf="selectedFile" class="upload-label">
+              {{ selectedFile.name }}
+            </p>
+            <p class="upload-subtext">
+              Files Supported: <span>Video files</span>
+            </p>
+
+            <input
+              type="file"
+              id="fileInput"
+              (change)="onFileChange($event)"
+              hidden
+              required
+            />
+            <button
+              type="button"
+              class="upload-btn"
+              (click)="triggerFileInput()"
+            >
+              Choose File
+            </button>
+          </div>
+        </div>
+        <span
+          class="error-message"
+          *ngIf="submitted && form.get('name')?.invalid"
+        >
+          Video is required
+        </span>
+      </div>
+    </form>
+  </app-modal>
+</div>

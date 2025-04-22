@@ -1,0 +1,26 @@
+<div class="dropdown-container">
+  <button class="dropdown-toggle" (click)="toggleDropdown()">
+    <span class="icon">
+      <svg-icon
+        src="{{`assets/image/icons/${icon}.svg`}}"
+        [svgStyle]="{ 'width.px': 15, 'height.px': 16, display: 'block' }"
+      ></svg-icon>
+    </span>
+    {{ label }}
+  </button>
+
+  <ul class="dropdown-menu" *ngIf="isOpen">
+    <li
+      *ngFor="let item of items"
+      (click)="onItemClick(item)"
+      class="dropdown-item"
+    >
+      <span *ngIf="item.icon" class="icon">
+        <svg-icon
+          src="{{ `assets/image/icons/${ item.icon }.svg` }}"
+        ></svg-icon>
+      </span>
+      <span *ngIf="item.label" class="label">{{ item.label }}</span>
+    </li>
+  </ul>
+</div>
