@@ -6,7 +6,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender,
     getPrerenderParams: async () => {
       return [
-        { id: '68079d4a062ca4ed22f97578' }
+        { id: '680a5c902c1c63f309cd2008' }
       ];
     },
   },
